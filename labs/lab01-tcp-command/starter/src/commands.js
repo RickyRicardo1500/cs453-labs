@@ -11,22 +11,16 @@ export function handleCommand(line) {
     switch (command.toUpperCase()) {
         case "ECHO":
             return argument;
-
-        // TODO: implement UPPER
-        // Example:
-        // UPPER hello -> HELLO
-
-        // TODO: implement LOWER
-        // Example:
-        // LOWER HELLO -> hello
-
-        // TODO: implement REVERSE
-        // Example:
-        // REVERSE hello -> olleh
-
-        // TODO: implement TIME
-        // Example:
-        // TIME -> current server time
+        case "UPPER":
+            return argument.toUpperCase(); 
+        case "LOWER":
+            return argument.toLowerCase();
+        case "REVERSE":
+            const reversed = argument.split('').reverse().join('');
+            return reversed;
+        case "TIME":
+            const now = new Date();
+            return now.toLocaleTimeString();
 
         case "QUIT":
             return "Goodbye.";
