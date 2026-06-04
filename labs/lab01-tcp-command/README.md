@@ -112,6 +112,12 @@ hello
 > UPPER hello
 HELLO
 
+> REVERSE hello
+olleh
+
+> TIME
+HOUR:MINUTE:SECOND AM/PM
+
 > QUIT
 Goodbye.
 ```
@@ -178,9 +184,13 @@ npm run test:watch
 Answer the following questions in your submission:
 
 1. What is the difference between the client and the server?
+    A client initiates communication and sends requests to the server. A server waits for requests and sends responses to clients by applying logic or resources accessible by the server.
 2. Why does the server need to keep running after handling one request?
+    The server is continuosly listening to respond to additional requests as they come in. There also may be other clients that need to connect to the server after the first request.
 3. What happens if two clients connect at the same time?
+    If two client are connected to the server, they each create a temporary connection to the server in addition to the main listening port.
 4. How is this different from HTTP?
+    HTTP requests and responses occur through a browser client that typically utilizes HTML,CSS, and Javascript. This would be considered the User Interface at the Presentation layer. Node.js API occurs at the Application layer utilizing the application logic underneath from the request.
 
 ## Submission
 
