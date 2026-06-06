@@ -65,15 +65,15 @@ The server accepts one text command per line.
 
 Commands are case-insensitive, but the command arguments should be handled as normal text.
 
-| Client sends    | Server responds     |
-| --------------- | ------------------- |
-| `ECHO hello`    | `hello`             |
-| `UPPER hello`   | `HELLO`             |
-| `LOWER HELLO`   | `hello`             |
-| `REVERSE hello` | `olleh`             |
-| `TIME`          | current server time |
-| `QUIT`          | closes connection   |
-| unknown command | error message       |
+| Client sends    | Server responds     | Description
+| --------------- | ------------------- | -----------------------------------
+| `ECHO hello`    | `hello`             | Output whats written in the message
+| `UPPER hello`   | `HELLO`             | Uppercase whats written in the message
+| `LOWER HELLO`   | `hello`             | Lowercase whats written in the message
+| `REVERSE hello` | `olleh`             | Reverse whats written in the message
+| `TIME`          | current server time | Displays current server time
+| `QUIT`          | closes connection   | Disconnects client connection with server
+| unknown command | error message       | Unknown commands recieve error messages
 
 ## Running the Lab
 
@@ -111,6 +111,9 @@ hello
 
 > UPPER hello
 HELLO
+
+> LOWER HELLO
+hello
 
 > REVERSE hello
 olleh
@@ -188,9 +191,9 @@ Answer the following questions in your submission:
 2. Why does the server need to keep running after handling one request?
     The server is continuosly listening to respond to additional requests as they come in. There also may be other clients that need to connect to the server after the first request.
 3. What happens if two clients connect at the same time?
-    If two client are connected to the server, they each create a temporary connection to the server in addition to the main listening port.
+    If two client are connected to the server, the server creates a separate socket connection for each client while still listening on the main port. The server can then communicate with each client independently without mixing their messages.
 4. How is this different from HTTP?
-    HTTP requests and responses occur through a browser client that typically utilizes HTML,CSS, and Javascript. This would be considered the User Interface at the Presentation layer. Node.js API occurs at the Application layer utilizing the application logic underneath from the request.
+    HTTP is a standardized application-layer protocol that sends structured requests and responses with defined methods, headers, status codes, and message formats. This command server utilizes a custom text-based protocol sent over a TCP connection that is maintained until disconnected. 
 
 ## Submission
 
