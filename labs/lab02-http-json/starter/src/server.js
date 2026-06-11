@@ -43,6 +43,36 @@ export function handleCalculate(body) {
     // TODO: Support add, subtract, multiply, and divide.
     // TODO: Return an error for unsupported operations.
     // TODO: Return an error for division by zero.
+    try {
+        let c = 0;
+        if (body.operation === "add") {
+            c = body.a + body.b;
+            sendJson(res, 200, { result: c })
+        } else if (body.operation === "subtract") {
+            c = body.a - body.b;
+            sendJson(res, 200, { result: c })
+        } else if (body.operation === "multiply") {
+            c = body.a * body.b;
+            sendJson(res, 200, { result: c })
+        } else if (body.operation === "divide") {
+            c = body.a / body.b;
+            sendJson(res, 200, { result: c })
+        } else if (body.operation === "remainder") {
+            c = body.a % body.b;
+            sendJson(res, 200, {result: c});
+        } else {
+            sendJson(res, 400, { error: "Bad Request, unsupported operation" })
+        }
+
+    } catch (error) {
+        if (error instanceof ReferenceError) {
+            sendJson(res, 404, { error: "Not Found, a and/or b not present" });
+        } else if (error instanceof TypeError) {
+            sendJson(res, 400, { error: "Bad Request, a and/or b not numbers" })
+        } else if (Number.isFinite(body.a / body.b)) {
+            sendJson(res, 400, { error: "Division by Zero" })
+        }
+    }
 
     return {
         statusCode: 501,
@@ -65,6 +95,7 @@ export async function requestHandler(req, res) {
 
     if (method === "GET" && url === "/requests") {
         // TODO: Return the current request count as JSON.
+        sendJson(res, 200, { requests: requestCount });
         sendJson(res, 501, { error: "Request counter not implemented yet" });
         return;
     }
@@ -74,6 +105,7 @@ export async function requestHandler(req, res) {
             const body = await readJsonBody(req);
 
             // TODO: Return the parsed JSON body back to the client.
+            sendJson(res, 200, body);
             sendJson(res, 501, { error: "Echo not implemented yet" });
         } catch {
             sendJson(res, 400, { error: "Invalid JSON" });
