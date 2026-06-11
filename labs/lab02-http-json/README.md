@@ -104,12 +104,13 @@ Example response:
 
 Your server must support at least the following operations:
 
-| Operation  | Meaning               |
-| ---------- | --------------------- |
-| `add`      | Add `a` and `b`       |
-| `subtract` | Subtract `b` from `a` |
-| `multiply` | Multiply `a` and `b`  |
-| `divide`   | Divide `a` by `b`     |
+| Operation  | Meaning                        |
+| ---------- | ------------------------------ |
+| `add`      | Add `a` and `b`                |
+| `subtract` | Subtract `b` from `a`          |
+| `multiply` | Multiply `a` and `b`           |
+| `divide`   | Divide `a` by `b`              |
+| `remainder`| Remainder of Divide `a` by `b` |
 
 The server should return an error response for unsupported operations.
 
@@ -281,7 +282,7 @@ Graduate students should complete one additional feature.
 Choose one of the following:
 
 1. Add a new route, such as `GET /time` or `POST /uppercase`.
-2. Add one additional calculation operation and document it.
+2. Add one additional calculation operation and document it.  <-- Implemented Remainder
 3. Improve the request counter so it tracks counts by route.
 4. Add additional automated tests for error handling.
 
