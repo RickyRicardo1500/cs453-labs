@@ -13,33 +13,86 @@ export function createApp() {
     { id: 2, name: "mouse", quantity: 5 }
   ];
 
+  function isValidItem(body) {
+    return (
+      body &&
+      typeof body.name === "string" &&
+      body.name.trim() !== "" &&
+      typeof body.quantity === "number" &&
+      body.quantity >= 0
+    );
+  }
+
   app.get("/health", (req, res) => {
     res.json({ status: "ok" });
   });
 
-  // TODO: Return all items.
+  // Completed: Return all items.
   app.get("/items", (req, res) => {
-    res.status(501).json({ error: "Not implemented yet" });
+    res.json(items);
   });
 
-  // TODO: Return one item by ID.
+  // Completed: Return one item by ID.
   app.get("/items/:id", (req, res) => {
-    res.status(501).json({ error: "Not implemented yet" });
+    const id = Number(req.params.id);
+    const item = items.find(item => item.id === id);
+    if (!item) {
+      res.status(404).json({ error: "Item not found" });
+    }
+    else {
+      res.json(item)
+    }    
   });
 
-  // TODO: Create a new item.
+  // Completed: Create a new item.
   app.post("/items", (req, res) => {
-    res.status(501).json({ error: "Not implemented yet" });
+    if (!isValidItem(req.body)) {
+      return res.status(400).json({ error: "Missing required fields or contains invalid data" });
+    }
+
+    const newItem = {
+      id: nextId++,
+      name: req.body.name,
+      quantity: req.body.quantity
+    };
+
+    items.push(newItem);
+    res.status(201).json(newItem);
   });
 
   // TODO: Update an existing item.
   app.put("/items/:id", (req, res) => {
-    res.status(501).json({ error: "Not implemented yet" });
+    const id = Number(req.params.id);
+    const index = items.findIndex(item => item.id === id);
+
+    if (index === -1) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    if (!isValidItem(req.body)) {
+      return res.status(400).json({ error: "Missing required fields or contains invalid data" });
+    }
+
+    items[index] = {
+      id,
+      name: req.body.name,
+      quantity: req.body.quantity
+    };
+
+    res.json(items[index]);
   });
 
   // TODO: Delete an existing item.
   app.delete("/items/:id", (req, res) => {
-    res.status(501).json({ error: "Not implemented yet" });
+    const id = Number(req.params.id);
+    const index = items.findIndex(item => item.id === id);
+
+    if (index === -1) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    items.splice(index, 1);
+    res.status(204).send();
   });
 
   app.use((req, res) => {
