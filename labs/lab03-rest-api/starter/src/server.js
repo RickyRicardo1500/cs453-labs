@@ -13,7 +13,7 @@ export function createApp() {
     { id: 2, name: "mouse", quantity: 5 }
   ];
 
-  function isValidItem(body) {
+  function isValidItem(body) {  //graduate
     return (
       body &&
       typeof body.name === "string" &&
@@ -47,7 +47,7 @@ export function createApp() {
   // Completed: Create a new item.
   app.post("/items", (req, res) => {
     if (!isValidItem(req.body)) {
-      return res.status(400).json({ error: "Missing required fields or contains invalid data" });
+      return res.status(400).json({ error: "Missing required fields or contains invalid data" });  //graduate
     }
 
     const newItem = {
@@ -60,7 +60,7 @@ export function createApp() {
     res.status(201).json(newItem);
   });
 
-  // TODO: Update an existing item.
+  // Completed: Update an existing item.
   app.put("/items/:id", (req, res) => {
     const id = Number(req.params.id);
     const index = items.findIndex(item => item.id === id);
@@ -70,7 +70,7 @@ export function createApp() {
     }
 
     if (!isValidItem(req.body)) {
-      return res.status(400).json({ error: "Missing required fields or contains invalid data" });
+      return res.status(400).json({ error: "Missing required fields or contains invalid data" });  //graduate
     }
 
     items[index] = {
@@ -82,7 +82,7 @@ export function createApp() {
     res.json(items[index]);
   });
 
-  // TODO: Delete an existing item.
+  // Completed: Delete an existing item.
   app.delete("/items/:id", (req, res) => {
     const id = Number(req.params.id);
     const index = items.findIndex(item => item.id === id);

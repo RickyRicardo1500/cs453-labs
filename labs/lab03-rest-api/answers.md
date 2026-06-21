@@ -24,3 +24,22 @@ A 400 Bad Request error means the client sent invalid or malformed data, such as
 
 The OpenAPI file documents the API by describing its routes, request formats, response formats, and possible errors. It serves as a blueprint for how the Express server should behave and helps developers understand and test the API.
 
+<<<<<<< HEAD
+=======
+## Graduate Students
+
+Graduate students should complete this additional feature:
+
+Add validation so:
+
+- `name` must be a non-empty string.
+- `quantity` must be a number greater than or equal to zero.
+- Invalid `POST /items` and `PUT /items/:id` requests return status code `400`.
+- Invalid requests return a JSON error response.
+
+Graduate students must also add automated tests for invalid input.
+
+Document your graduate extension in your README and in your reflection answers.
+
+All additional features implemented.
+>>>>>>> lab03-completed-RC

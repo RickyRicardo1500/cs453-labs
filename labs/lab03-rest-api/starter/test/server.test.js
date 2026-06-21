@@ -56,7 +56,7 @@ describe("Lab 3 starter", () => {
       quantity: 4
     });
   });
-
+  //graduate
   test("POST /items returns 400 for invalid input", async () => {
     const app = createApp();
     const res = await request(app)
@@ -99,7 +99,7 @@ describe("Lab 3 starter", () => {
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual({ error: "Item not found" });
   });
-
+  //graduate
   test("PUT /items/:id returns 400 for invalid input", async () => {
     const app = createApp();
     const res = await request(app)
