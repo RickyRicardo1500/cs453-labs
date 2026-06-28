@@ -74,7 +74,7 @@ paths:
                     example:  {
                                 "error": "Missing required fields or contains invalid data"
                               }
-  /items/{id}
+  /items/{id}:
     get: # Completed: Document GET /items/{id}.
       summary: Retrieve Item
       responses:
