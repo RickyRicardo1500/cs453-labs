@@ -15,9 +15,6 @@
           as you add more API routes.
         </p>
 
-        <div class="actions">
-          <button id="load-items" type="button">Load Items</button>
-        </div>
 
         <form id="add-item-form">
           <label>
@@ -30,12 +27,68 @@
             <input id="item-quantity" name="quantity" type="number" min="0" required>
           </label>
 
+          <label>
+            Category
+            <input id="item-category" name="category" type="text" required>
+          </label>
+
           <button type="submit">Add Item</button>
         </form>
+        
+        <form id="update-item-form">
+          <label>
+            ID#
+            <input id="update-item-id" name="name" type="text" required>
+          </label>
+
+          <label>
+            Name
+            <input id="update-item-name" name="name" type="text" required>
+          </label>
+
+          <label>
+            Quantity
+            <input id="update-item-quantity" name="quantity" type="number" min="0" required>
+          </label>
+
+          <label>
+            Category
+            <input id="update-item-category" name="category" type="text" required>
+          </label>
+
+          <button type="submit">Update Item</button>
+        </form>
+
+        <form id="delete-item-form">
+          <label>
+            ID#
+            <input id="delete-item-id" name="name" type="text" required>
+          </label>
+
+          <button type="submit">Delete Item</button>
+        </form>
+
+        <form id="load-item-form">
+          <label>
+            ID#
+            <input id="load-item-id" name="name" type="text" required>
+          </label>
+          <button id="load-item" type="submit">Load Item</button>
+        </form>
+
+        <p id="item-status" class="status">Ready.</p>
+
+        <ul id="item" class="item"></ul>
+
+        <div class="actions">
+          <button id="load-items" type="button">Load Items</button>
+        </div>
 
         <p id="status" class="status">Ready.</p>
 
         <ul id="items" class="items"></ul>
+
+
       </section>
     </main>
 
